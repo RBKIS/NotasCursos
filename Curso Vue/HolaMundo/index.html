@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app">
+        <H1>{{titulo}}</H1>
+        <h2>{{ cantidad >= 1000 ? 'Es mayor o igual a mil' : 'Es menor a mil'}}</h2>
+        <a v-bind:href="enlace">ir al enlace con v-bind</a>
+        <a :href="enlace">ir al enlace con :</a>
+        <h2>Cantidad: {{cantidad}}</h2>
+
+        <hr>
+        <h2 v-if="estado">Cuenta Activa</h2>
+        <h2 v-else="estado">Cuenta Desactivada</h2>
+
+        <hr>
+
+        <h2 v-if="cantidad > 500">Cantidad: {{cantidad}}</h2>
+        <h2 v-else-if="cantidad <= 500 && cantidad > 0">
+            Cantidad :
+            <span style="color:red">{{cantidad}}</span>
+        </h2>
+        <h2 v-else>Sin Cantidad</h2>
+
+        <hr>
+        <h2>Mis Servicios Disponibles</h2>
+        <ul>
+            <li v-for="(item, index) in servicios" :key="index">{{index}}-{{item}}</li>
+        </ul>
+
+        <hr>
+
+        <button v-on:click="agregarSaldo">Agregar Saldo</button>
+        <button @click="agregarSaldo">Agregar Saldo</button>
+
+        <hr>
+        <button @click="disminuirSaldo(200)" :disabled="desactivar">Disminuir Saldos</button>
+
+
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        const mountedApp = app.mount('#app');
+    </script>
+</body>
+
+</html>
